@@ -1,0 +1,24 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Syntax check
+        run: node --check narrator.js
+      - name: File-size budget (≤20KB)
+        run: |
+          size=$(wc -c < narrator.js)
+          echo "narrator.js: $size bytes"
+          test "$size" -le 20480

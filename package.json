@@ -1,0 +1,37 @@
+{
+  "name": "@ttsainpm/narrator",
+  "version": "0.1.0",
+  "description": "Drop-in 'listen to this article' reader bar. Zero-dependency vanilla JS, ~14KB. One <script> tag adds a TTS narrator to any page.",
+  "main": "narrator.js",
+  "files": [
+    "narrator.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "lint": "node --check narrator.js",
+    "test": "node --check narrator.js && echo 'syntax ok'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ttsaigit/narrator-js.git"
+  },
+  "keywords": [
+    "tts",
+    "text-to-speech",
+    "audio-native",
+    "reader",
+    "narrator",
+    "embed",
+    "widget",
+    "readability",
+    "speech-synthesis",
+    "accessibility"
+  ],
+  "author": "TTS.ai <hello@tts.ai>",
+  "license": "Apache-2.0",
+  "homepage": "https://tts.ai",
+  "bugs": {
+    "url": "https://github.com/ttsaigit/narrator-js/issues"
+  }
+}
