@@ -68,6 +68,42 @@ Drop `narrator.js` into your static assets and point `<script src=>` at it. Defa
 
 Get a publishable key (`pk-tts-...`) from [tts.ai/account/#api-keys](https://tts.ai/account/#api-keys). Set domain restrictions when you create the key so it can only be used on your sites.
 
+## Drop into your CMS
+
+### Notion
+
+Add an **Embed** block to the page (type `/embed`), point it at a page on your own domain that includes:
+
+```html
+<script src="https://tts.ai/narrator.js" data-pk="pk-tts-..." data-extract="auto"></script>
+```
+
+Notion's embed iframe will load the script and the reader bar appears at the bottom of the embedded view. To narrate the Notion page text itself, copy your content into a static page first — Notion blocks `<script>` execution inside its native blocks for security, so the embed-block route is the supported path.
+
+### Obsidian
+
+Open the note in **Source mode** and paste:
+
+```html
+<script src="https://tts.ai/narrator.js" data-pk="pk-tts-..." data-extract=".markdown-rendered"></script>
+```
+
+Switch back to Reading view — the bar appears and reads the rendered note. The `data-extract=".markdown-rendered"` selector targets Obsidian's content container so navigation chrome / sidebars don't get read aloud. Works under "Restricted mode" off; Obsidian's HTML support is enabled by default.
+
+### Substack
+
+In the post editor, add a **Custom HTML** block (the `</>` icon in the toolbar). Paste:
+
+```html
+<script src="https://tts.ai/narrator.js" data-pk="pk-tts-..." data-extract=".body, article, [class*='post-content']"></script>
+```
+
+Publish. Subscribers see a "Listen to this article" reader bar at the bottom of the page.
+
+### Ghost / WordPress / Webflow / generic HTML
+
+Same pattern — drop the `<script>` tag in any "Custom HTML / code injection" slot the platform offers (Ghost: Code Injection → Footer, WordPress: theme footer or a Custom HTML block, Webflow: Page settings → Footer code). For WordPress specifically, see also [`tts-php`](https://github.com/ttsaigit/tts-php) if you want server-side integration.
+
 ## License
 
 Apache-2.0. See `LICENSE`.
